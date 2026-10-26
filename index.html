@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveen Kumar | BSc Computer Science Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Linked Custom CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen pt-20">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-emerald-600 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-lg"></i>
+        <span id="toast-message" class="text-sm font-medium">Notification message</span>
+    </div>
+
+    <!-- FIXED TOP NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 glass-panel transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Logo / Name Brand -->
+                <a href="#home" class="flex items-center space-x-2 text-lg font-bold text-slate-900 dark:text-white group">
+                    <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-600 to-accent-500 text-white flex items-center justify-center font-extrabold text-sm shadow-md group-hover:scale-105 transition-transform">NK</span>
+                    <span>Naveen<span class="text-brand-600 dark:text-brand-400">Kumar</span></span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#home" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
+                    <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">About</a>
+                    <a href="#projects" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Projects</a>
+                    <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</a>
+                </div>
+
+                <!-- Right Side Actions: Theme Toggle & Mobile Menu Switch -->
+                <div class="flex items-center space-x-3">
+                    <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none shadow-sm" aria-label="Toggle Theme">
+                        <i id="theme-icon" class="fa-solid fa-moon text-base"></i>
+                    </button>
+
+                    <!-- Mobile Hamburger Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 focus:outline-none">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+                <a href="#home" class="mobile-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Home</a>
+                <a href="#about" class="mobile-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+                <a href="#projects" class="mobile-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Projects</a>
+                <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-8">
+
+        <!-- 1. HOME SECTION -->
+        <section id="home" class="pt-6 min-h-[calc(100vh-6rem)] flex flex-col justify-center">
+            <div class="flex flex-col-reverse lg:flex-row gap-10 items-center justify-between">
+                
+                <!-- Left Side: Hero Intro -->
+                <div class="flex-1 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 text-xs font-semibold tracking-wide border border-brand-200 dark:border-brand-800">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        BSc Computer Science Student
+                    </div>
+
+                    <div class="space-y-3">
+                        <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                            Hello, I'm <br class="hidden sm:inline" />
+                            <span class="bg-gradient-to-r from-brand-600 to-accent-500 bg-clip-text text-transparent">Naveen Kumar</span>
+                        </h1>
+                        <p class="text-xl sm:text-2xl font-semibold text-slate-600 dark:text-slate-300">
+                            Computer Science Student &amp; Software Developer
+                        </p>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Enthusiastic developer focused on procedural programming, algorithms in <strong class="text-slate-900 dark:text-white">C/C++</strong>, dynamic memory structures, and modern NoSQL databases with <strong class="text-slate-900 dark:text-white">MongoDB</strong>. Passionate about software craftsmanship, core computer science concepts, and continuous learning.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-4">
+                        <a href="#projects" class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-lg shadow-brand-500/20 transition-all hover:-translate-y-0.5 inline-flex items-center gap-2">
+                            <i class="fa-solid fa-code"></i> View Projects
+                        </a>
+                        <a href="#contact" class="px-6 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-sm hover:border-brand-500 transition-all shadow-sm inline-flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Side: Clean Profile Card with Photo Added -->
+                <aside class="w-full lg:w-96 flex-shrink-0">
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-2xl space-y-6 relative overflow-hidden group">
+                        
+                        <div class="absolute -top-12 -right-12 w-32 h-32 bg-brand-500/10 rounded-full blur-2xl group-hover:bg-brand-500/20 transition-all"></div>
+
+                        <!-- Avatar & Profile Heading -->
+                        <div class="flex items-center gap-4">
+                            <!-- PROFILE PHOTO CONTAINER (Replace 'profile.jpg' with your image path or URL) -->
+                            <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-lg flex-shrink-0 ring-4 ring-brand-500/10 bg-slate-100 dark:bg-slate-800">
+                                <img src="naveen.jpeg" alt="Naveen Kumar" class="w-full h-full object-cover">
+                            </div>
+                            <div class="space-y-1">
+                                <h2 class="text-xl font-bold text-slate-900 dark:text-white">Naveen Kumar</h2>
+                                <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-brand-50 dark:bg-brand-900/50 text-brand-600 dark:text-brand-300 text-xs font-bold border border-brand-200 dark:border-brand-800">
+                                    <i class="fa-solid fa-graduation-cap"></i> BSc Computer Science
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Dept. of Computer Science</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-100 dark:border-slate-800"></div>
+
+                        <!-- Repositories & Profile Links -->
+                        <div class="space-y-3">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Quick Code Access</h3>
+
+                            <!-- GitHub Profile Link -->
+                            <a href="https://github.com/naveenkumarnaveenkumar85246-ops" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 hover:border-slate-400 dark:hover:border-slate-600 transition-all group/link">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-brands fa-github text-lg"></i>
+                                    </div>
+                                    <div class="truncate">
+                                        <div class="text-[10px] uppercase font-bold text-slate-400">GitHub Profile</div>
+                                        <span class="text-xs text-slate-700 dark:text-slate-200 font-medium group-hover/link:text-brand-500 truncate block">@naveenkumarnaveenkumar85246-ops</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover/link:text-slate-600 dark:group-hover/link:text-white"></i>
+                            </a>
+
+                            <!-- Project Link Button -->
+                            <a href="https://github.com/naveenkumarnaveenkumar85246-ops/1sem-Cprogram-Project" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-xl bg-slate-900 dark:bg-brand-600 text-white text-xs font-semibold flex items-center justify-center gap-2 hover:bg-slate-800 dark:hover:bg-brand-500 transition-colors shadow-md">
+                                <i class="fa-solid fa-folder-git"></i> 1st Sem C Project Repo <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT SECTION -->
+        <section id="about" class="scroll-mt-24 space-y-10">
+            <div class="space-y-2 text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">About Me</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm">Background, Skills, and Recognized Certifications</p>
+                <div class="w-12 h-1 bg-brand-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-lg space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-3 h-8 rounded-full bg-brand-600"></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Background &amp; Academic Focus</h3>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                    As a dedicated <strong class="text-slate-900 dark:text-white">BSc Computer Science student</strong>, I am focused on mastering fundamental software engineering, low-level dynamic memory operations, algorithms, and relational/NoSQL database management. My academic journey combines algorithmic thinking in C/C++ with practical skills in MongoDB and Git. Additionally, I hold certified qualifications in professional job interview preparation and document creation.
+                </p>
+            </div>
+
+            <!-- Interactive Skills Filter -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-lg space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-8 rounded-full bg-accent-500"></div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Technical &amp; Professional Skills</h3>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 text-xs font-semibold" id="filter-tabs">
+                        <button class="tab-btn active-tab px-3.5 py-1.5 rounded-lg bg-brand-600 text-white transition-colors" data-category="all">All Skills</button>
+                        <button class="tab-btn px-3.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" data-category="programming">Programming &amp; Core</button>
+                        <button class="tab-btn px-3.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" data-category="database">Databases</button>
+                        <button class="tab-btn px-3.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" data-category="tools">Soft Skills &amp; Tools</button>
+                    </div>
+                </div>
+
+                <!-- Skill Cards Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4" id="skills-grid">
+                    <div class="skill-card p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/70 text-center hover:scale-105 transition-all" data-category="programming">
+                        <i class="fa-solid fa-c text-3xl text-brand-500 mb-2"></i>
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white">C Language</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400">Core &amp; Pointers</p>
+                    </div>
+
+                    <div class="skill-card p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/70 text-center hover:scale-105 transition-all" data-category="programming">
+                        <i class="fa-solid fa-code text-3xl text-blue-500 mb-2"></i>
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white">C++</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400">OOP Fundamentals</p>
+                    </div>
+
+                    <div class="skill-card p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/70 text-center hover:scale-105 transition-all" data-category="database">
+                        <i class="fa-solid fa-leaf text-3xl text-emerald-500 mb-2"></i>
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white">MongoDB</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400">NoSQL &amp; Documents</p>
+                    </div>
+
+                    <div class="skill-card p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/70 text-center hover:scale-105 transition-all" data-category="tools">
+                        <i class="fa-solid fa-comments text-3xl text-indigo-500 mb-2"></i>
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white">Communication</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400">Team Collaboration</p>
+                    </div>
+
+                    <div class="skill-card p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/70 text-center hover:scale-105 transition-all" data-category="tools">
+                        <i class="fa-solid fa-user-check text-3xl text-purple-500 mb-2"></i>
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white">Interview Prep</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400">Coursera Certified</p>
+                    </div>
+
+                    <div class="skill-card p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/70 text-center hover:scale-105 transition-all" data-category="tools">
+                        <i class="fa-solid fa-file-lines text-3xl text-amber-500 mb-2"></i>
+                        <h4 class="font-bold text-sm text-slate-900 dark:text-white">Doc Creation</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400">Google Docs &amp; Resumes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verified Certifications Cards -->
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-3 h-8 rounded-full bg-emerald-500"></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Verified Certifications</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex flex-col justify-between p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg hover:border-emerald-500/50 transition-all">
+                        <div class="space-y-3">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">MongoDB Skill</span>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-base">MongoDB Basics for Students</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Issue Date: Jul 13, 2026</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Completed MongoDB, Inc. curriculum covering document modeling, queries, and NoSQL fundamentals[cite: 1].
+                            </p>
+                        </div>
+                        <div class="pt-4 mt-6 border-t border-slate-100 dark:border-slate-800">
+                            <a href="https://www.credly.com/badges/08d853ab-c12b-4025-8303-62a90d9ac6cd" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+                                Verify Credly Badge <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-between p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg hover:border-blue-500/50 transition-all">
+                        <div class="space-y-3">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-user-gear"></i>
+                            </div>
+                            <span class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Coursera Project Certificate</span>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-base">Preparation for Job Interviews</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Completed: Jan 29, 2026</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Authorized by Coursera; focused on structured interview strategy and professional workplace communication[cite: 2].
+                            </p>
+                        </div>
+                        <div class="pt-4 mt-6 border-t border-slate-100 dark:border-slate-800">
+                            <a href="https://coursera.org/verify/P4JQP68QWRWU" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                                Verify Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-between p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg hover:border-purple-500/50 transition-all">
+                        <div class="space-y-3">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </div>
+                            <span class="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Coursera Project Certificate</span>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-base">Resume &amp; Cover Letter Creation</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Completed: Jan 29, 2026</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Project training on preparing professional resumes and tailored cover letters in Google Docs[cite: 3].
+                            </p>
+                        </div>
+                        <div class="pt-4 mt-6 border-t border-slate-100 dark:border-slate-800">
+                            <a href="https://coursera.org/verify/DP0DIDT403Y1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline">
+                                Verify Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PROJECTS SECTION -->
+        <section id="projects" class="scroll-mt-24 space-y-8">
+            <div class="space-y-2 text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Projects</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm">Computer Science Academic Work &amp; Code Repositories</p>
+                <div class="w-12 h-1 bg-brand-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Featured Project Card -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-lg flex flex-col justify-between hover:border-brand-500/50 transition-all space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 text-xs font-bold border border-brand-200 dark:border-brand-800">
+                                Featured Academic Project
+                            </span>
+                            <i class="fa-solid fa-folder-code text-slate-400 text-xl"></i>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">1st Semester C Programming Project</h3>
+                            <p class="text-xs text-slate-400 font-mono mt-1">Repo: 1sem-Cprogram-Project</p>
+                        </div>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            A console software project created in the 1st semester of BSc Computer Science. Focuses on structured logic, dynamic arrays, pointer manipulations, and control flow in C.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-brand-300 text-xs font-semibold border border-brand-200 dark:border-slate-700">C Language</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">Data Structures</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">Git &amp; GitHub</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <a href="https://github.com/naveenkumarnaveenkumar85246-ops/1sem-Cprogram-Project" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-colors shadow-md">
+                            <i class="fa-brands fa-github text-sm"></i> View Repository on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Upcoming Project Card -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-lg flex flex-col justify-between opacity-80 hover:opacity-100 transition-all space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold">
+                                Upcoming Project
+                            </span>
+                            <i class="fa-solid fa-clock-rotate-left text-slate-400 text-xl"></i>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">MongoDB Data Application</h3>
+                            <p class="text-xs text-slate-400 font-mono mt-1">In Development</p>
+                        </div>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            A document-oriented backend application implementing aggregation pipelines and schema design for computer science student data management.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 text-xs font-semibold border border-emerald-200 dark:border-slate-700">MongoDB</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">NoSQL</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <button disabled class="w-full py-2.5 px-4 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 text-xs font-semibold flex items-center justify-center gap-2 cursor-not-allowed">
+                            <i class="fa-solid fa-lock text-xs"></i> Repository Coming Soon
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. CONTACT SECTION -->
+        <section id="contact" class="scroll-mt-24 space-y-8">
+            <div class="space-y-2 text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Contact &amp; Connect</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm">All primary contact details, email, phone, and direct messages</p>
+                <div class="w-12 h-1 bg-brand-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Contact Info Panel -->
+                <div class="lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-lg space-y-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Direct Contact Info</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Reach out via email, phone, or view code repositories.</p>
+                    </div>
+
+                    <div class="space-y-4 pt-1">
+                        <!-- Email Item with Copy Button -->
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
+                            <div class="flex items-center space-x-3 overflow-hidden">
+                                <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg flex-shrink-0">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div class="truncate">
+                                    <h4 class="text-[10px] font-bold text-slate-400 uppercase">Email Address</h4>
+                                    <a href="mailto:naveenkumarnaveenkumar85246@gmail.com" class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-brand-500 truncate block">
+                                        naveenkumarnaveenkumar85246@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                            <button id="copy-email-btn" class="p-2 text-slate-400 hover:text-brand-500 transition-colors flex-shrink-0" title="Copy Email">
+                                <i class="fa-regular fa-copy text-base"></i>
+                            </button>
+                        </div>
+
+                        <!-- Phone Item with Copy Button -->
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg flex-shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-[10px] font-bold text-slate-400 uppercase">Phone Number</h4>
+                                    <a href="tel:8489105518" class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-emerald-500">
+                                        +91 8489105518
+                                    </a>
+                                </div>
+                            </div>
+                            <button id="copy-phone-btn" class="p-2 text-slate-400 hover:text-emerald-500 transition-colors flex-shrink-0" title="Copy Phone">
+                                <i class="fa-regular fa-copy text-base"></i>
+                            </button>
+                        </div>
+
+                        <!-- GitHub Profile Item -->
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
+                            <div class="flex items-center space-x-3 overflow-hidden">
+                                <div class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white flex items-center justify-center text-lg flex-shrink-0">
+                                    <i class="fa-brands fa-github"></i>
+                                </div>
+                                <div class="truncate">
+                                    <h4 class="text-[10px] font-bold text-slate-400 uppercase">GitHub Profile</h4>
+                                    <a href="https://github.com/naveenkumarnaveenkumar85246-ops" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-brand-500 truncate block">
+                                        @naveenkumarnaveenkumar85246-ops
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="https://github.com/naveenkumarnaveenkumar85246-ops" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors" title="Open Profile">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Contact Form -->
+                <div class="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-lg">
+                    <form id="contact-form" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1.5">
+                                <label for="form-name" class="text-xs font-bold text-slate-700 dark:text-slate-300">Your Name</label>
+                                <input type="text" id="form-name" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label for="form-email" class="text-xs font-bold text-slate-700 dark:text-slate-300">Your Email</label>
+                                <input type="email" id="form-email" required placeholder="john@example.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="form-subject" class="text-xs font-bold text-slate-700 dark:text-slate-300">Subject</label>
+                            <input type="text" id="form-subject" required placeholder="Software Internship / Project Inquiry" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="form-message" class="text-xs font-bold text-slate-700 dark:text-slate-300">Message</label>
+                            <textarea id="form-message" rows="4" required placeholder="Hello Naveen, I would like to get in touch..." class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 px-6 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md transition-all hover:-translate-y-0.5 inline-flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane text-xs"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-400 space-y-2">
+            <p>© 2026 Naveen Kumar • BSc Computer Science Student Portfolio</p>
+            <p class="text-[11px] text-slate-400">Tailwind CSS &amp; Modern Interactive Web Design</p>
+        </footer>
+    </div>
+
+    <!-- Linked Custom JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
