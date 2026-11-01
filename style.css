@@ -1,16 +1,16 @@
-/* Custom Styles for Naveen Kumar Portfolio */
+/* Custom styles for Naveen Kumar's portfolio */
 
 body {
     font-family: 'Inter', sans-serif;
 }
 
-/* Glassmorphism Navigation Bar */
+/* Glass effect for the fixed navigation bar */
 .glass-panel {
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
 }
 
-/* Custom Scrollbar Styling */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -26,4 +26,13 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(148, 163, 184, 0.7);
+}
+
+/* Make keyboard focus visible */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #0284c7;
+    outline-offset: 3px;
 }
